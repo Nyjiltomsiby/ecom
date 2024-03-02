@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center ">
+      <div style="min-width:18 rem;">
+        <img src="{{product.image.url}}" alt="{{product.name}}" style= width:500px; height:300px; >
+      </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+        <div>
+          <h1>{{product.name}}</h1>
+          <p>${{product.price}}</p>
+          <p>{{product.description}}</p>
+          <a href="#" class="btn btn-primary">Add to Cart</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

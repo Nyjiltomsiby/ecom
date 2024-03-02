@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if category %}
+<div>
+  <div>
+    <p class="text-center"><a href="{% url 'allproducts' %}">Our categories</a></p>
+  </div>
+</div>
+{% endif %}
+<div>
+{% if category %}
+<img src="{{category.image.url}}" style="width:1600px; height:500px;">
+  </div>
+​
+<br>
+<div>
+  <h1 class="animated-title">{{category.name}}</h1> <!-- Added class for animation -->
+  <p class="animated-paragraph">{{category.description}}</p> <!-- Added class for animation -->
+</div>
+{% else %}
+<div>
+  <img src="{% static 'img/ss.png' %}" alt="Wallpaper_image" style="width:1600px; height:500px;" >
+</div>
+​
+<div>
+  <h1 style="text-align:center; color:black; font-size: 56px;" class="animated-title"><i>N&N: Your One-Stop Destination for Online Shopping </i></h1> <!-- Added class for animation -->
+  <p style="font-family: Arial;" class="animated-paragraph"> <!-- Added class for animation -->
+    Discover a wide range of products at your fingertips on our shopping page. From fashion to electronics, home decor, beauty, and more, we've got you covered.
+    With easy navigation and secure checkout, shopping with us is a breeze. Explore our curated selection and find what you need in just a few clicks.
+    Shop with confidence and convenience at <strong>N&N</strong>. Start browsing now!
+  </p>
+</div>
+{% endif %}
+​
+<div class="container">
+  <div class="row">
+  {% for product in products %}
+    <div class="col-9 col-sm-12 col-md-4">
+      <div class="card" style="width: 18rem;">
+        <a href="{{product.get_url}}"><img class="card-img-top" src="{{product.image.url}}" alt="Card image cap" style="width:18rem; height:200px;" ></a>
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text">{{product.price}}</p>
+          <p class="card-text">{{product.description}}</p>
+          <a href="#" class="btn btn-primary">Add to Cart</a>
+        </div>
+      </div>          
+    </div>
+  {% endfor %}
+  </div>
+</div>
+
+<!-- CSS Animation Styles -->
+<style>
+  /* Define the animation */
+  @keyframes slideIn {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Apply the animation to elements with the "animated-title" class */
+  .animated-title {
+    animation: slideIn 1s ease-out; /* You can adjust the duration and timing function */
+  }
+
+  /* Apply the animation to elements with the "animated-paragraph" class */
+  .animated-paragraph {
+    animation: slideIn 1s ease-out; /* You can adjust the duration and timing function */
+  }
+</style>
+{% endblock %}
